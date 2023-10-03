@@ -1,0 +1,13 @@
+TO DO List
+
+> Move Angular src/ to frontend/ --DONE
+> Move NestJs src/ to backend/ --DONE
+> Move config file to same location and moke both work --DONE
+> Install Necessary packages:
+    frontend
+     - bootstrap
+     - aos
+    backend
+     - cors
+     - postgres
+     - mongodb
