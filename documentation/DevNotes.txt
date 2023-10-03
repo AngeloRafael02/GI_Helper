@@ -1,0 +1,40 @@
+application/ File Structure:
+
+application/
+|-- dist/
+|   |-- frontend/
+|   |   |-- ...
+|   |-- backend/
+|   |   |-- ...
+|-- frontend/
+|   |-- src/
+|-- backend/
+|   |-- src/
+|-- package.json
+|-- angular.json
+|-- nest-cli.json
+|-- tsconfig.json (and extensions)
+
+The Angular Framework src/ directory and Nest JS src/ directory are in their separate directories 
+(frontend/ and backend/ respectively) but their config file such are all in the application/ directory 
+level. Because of this, there are several files that are the same in both frameworks but have different 
+content such as the package.json the tsconfig.json. Mostly, the contents of some of the of the config
+files of NestJS are merged to config files of the Angular's config files. Otherwise, files unique to 
+Nest JS such as the .eslint.js and nest-cli.json are moved to the same directory as the Angular config 
+files.
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
