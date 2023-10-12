@@ -1,22 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Element } from 'backend/src/models/element.entity';
-import { Repository } from 'typeorm';
-import { pool } from 'backend/src/pool';
+import {Pool} from 'pg'
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class PgService {
 
     constructor(
-        @InjectRepository(Element) private readonly repo:Repository<Element>
+      private readonly config:ConfigService
     ){}
 
-    public async getElements():Promise<Element[]>{
-        return await this.repo.find();
-    }
+    private readonly pool = new Pool({
+      connectionString: this.config.get<string>('DATABASE_URL'),
+      ssl: {
+        require: true,
+      },
+    })
 
     public async getPostgresVersion() {
-        const client = await pool.connect();
+        const client = await this.pool.connect();
         try {
           const response = await client.query('SELECT version()');
           console.log(response.rows[0]);
