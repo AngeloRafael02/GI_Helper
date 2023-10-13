@@ -5,9 +5,9 @@ TO DO List
 > Move config file to same location and moke both work --DONE
 > Install Necessary packages:
     frontend
-     - bootstrap
-     - aos
+     - bootstrap - DONE
+     - aos - DONE
     backend
-     - cors
-     - postgres
-     - mongodb
+     - cors - DONE
+     - postgres/pg - DONE
+     - mongodb - DONE
