@@ -22,19 +22,3 @@ content such as the package.json the tsconfig.json. Mostly, the contents of some
 files of NestJS are merged to config files of the Angular's config files. Otherwise, files unique to 
 Nest JS such as the .eslint.js and nest-cli.json are moved to the same directory as the Angular config 
 files.
-
-# Logs
-logs
-*.log
-npm-debug.log*
-pnpm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
-
-# OS
-.DS_Store
-
-# Tests
-/coverage
-/.nyc_output
