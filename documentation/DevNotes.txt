@@ -22,3 +22,15 @@ content such as the package.json the tsconfig.json. Mostly, the contents of some
 files of NestJS are merged to config files of the Angular's config files. Otherwise, files unique to 
 Nest JS such as the .eslint.js and nest-cli.json are moved to the same directory as the Angular config 
 files.
+
+environmental variable of the frontend and backend are in separate files:
+- frontend uses an environment/ directory containing development and productions Env files.
+- backend uses .env located at the application/ directory level
+
+ROUTES:
+/,/:day - GET (get current day characters & List all Items)
+/ - POST (Push a new List Item)
+/ - PUT (Update a list Item)
+/ - DELETE (delete a list item)
+/characters/:id - GET (get a single character + the details)
+/weapons/:id - GET (get a single character + the details)
