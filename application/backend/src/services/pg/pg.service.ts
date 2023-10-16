@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {Pool} from 'pg'
+import { Pool } from 'pg'
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
