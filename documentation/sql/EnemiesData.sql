@@ -54,7 +54,7 @@ INSERT INTO EnhancementMaterials (Material,star) VALUES
     ('Chaos Oculus',4),  --48
     ('Chaos Storage',2),
     ('Chaos Module',3),
-    ('Chaos Bolt',4),  --52
+    ('Chaos Bolt',4),  --51
     ('Damaged Prism',2),
     ('Turbid Prism',3),
     ('Radiant Prism',4), --54
