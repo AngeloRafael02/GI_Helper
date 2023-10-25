@@ -71,12 +71,13 @@ INSERT INTO WeaponDomainMaterials (Material, star, Domain_ID, Availabilities) VA
 
 CREATE TABLE WeaponMaterialSet(
     id SERIAL PRIMARY KEY,
-    Material2 INT REFERENCES SkillDomainMaterials(id),
-    Material3 INT REFERENCES SkillDomainMaterials(id),
-    Material4 INT REFERENCES SkillDomainMaterials(id),
-    Material5 INT REFERENCES SkillDomainMaterials(id)
+    Material2 INT REFERENCES WeaponDomainMaterials(id),
+    Material3 INT REFERENCES WeaponDomainMaterials(id),
+    Material4 INT REFERENCES WeaponDomainMaterials(id),
+    Material5 INT REFERENCES WeaponDomainMaterials(id)
 );
-INSERT INTO WeaponMaterialSet(Material2,Material3,Material4,Material5) VALUES
+
+INSERT INTO WeaponMaterialSet (Material2, Material3, Material4, Material5) VALUES
     -- Mondstadt
     (1,2,3,4),
     (5,6,7,8),
@@ -90,7 +91,7 @@ INSERT INTO WeaponMaterialSet(Material2,Material3,Material4,Material5) VALUES
     (29,30,31,32),
     (33,34,35,36),
     -- Sumeru
-    (37.38.39.40),
+    (37,38,39,40),
     (41,42,43,44),
     (45,46,47,48),
     -- Fontaine
@@ -98,4 +99,17 @@ INSERT INTO WeaponMaterialSet(Material2,Material3,Material4,Material5) VALUES
     (53,54,55,56),
     (57,58,59,60)
     --(,,,),
+;
+
+CREATE VIEW WMaterialSet AS 
+SELECT WeaponMaterialSet.id, 
+        m2.material AS Material2,
+        m3.material AS Material3,
+        m4.material AS Material4,
+        m5.material AS Material5
+FROM WeaponMaterialSet
+LEFT JOIN WeaponDomainMaterials AS m2 ON WeaponMaterialSet.Material2 = m2.id
+LEFT JOIN WeaponDomainMaterials AS m3 ON WeaponMaterialSet.Material3 = m3.id
+LEFT JOIN WeaponDomainMaterials AS m4 ON WeaponMaterialSet.Material4 = m4.id
+LEFT JOIN WeaponDomainMaterials AS m5 ON WeaponMaterialSet.Material5 = m5.id
 ;
