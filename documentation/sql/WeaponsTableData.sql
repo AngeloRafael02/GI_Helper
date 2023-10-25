@@ -209,6 +209,7 @@ VALUES
 ('Hunter''s Path',                       5, 5, 8, 8,12,21,25, 3, 'HuntersPath.png'),
 ('The First Great Magic',                5, 5, 7,10,13,27,31, 1, 'TheFirstGreatMagic.png')
 ;   
----UPDATE weapons SET domain_id = 2 WHERE id = 115 ;   
+-- DEVNOTE: Add these Correction to new Table (Find the Weapons themselves)
+--UPDATE weapons SET domain_id = 2 WHERE id = 115 ;   
 --UPDATE weapons SET domain_id = 4 WHERE id = 13 ;  
 --UPDATE weapons SET domain_id = 4 WHERE id = 61 ;  
