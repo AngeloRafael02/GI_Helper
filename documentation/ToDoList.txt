@@ -11,3 +11,6 @@ TO DO List
      - cors - DONE
      - postgres/pg - DONE
      - mongodb - DONE
+> Added Postgres DB Content - DONE
+> Create Rest API and routes
+> Create MongoDB Schema 
