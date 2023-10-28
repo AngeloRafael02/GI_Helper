@@ -15,12 +15,23 @@ export class PgService {
       require: true,
     },
   })
+  private connection = this.pool.connect();
 
   public async getPostgresVersion() {
-    const client = await this.pool.connect();
+    const client = await this.connection
     try {
       const response = await client.query('SELECT version()');
       console.log(response.rows[0]);
+    } finally {
+      client.release();
+    }
+  }
+
+  public async getElements() {
+    const client = await this.connection
+    try {
+      const response = await client.query('SELECT * FROM elements;');
+      console.log(response.rows);
     } finally {
       client.release();
     }
