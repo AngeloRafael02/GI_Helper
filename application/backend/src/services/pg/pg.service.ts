@@ -1,4 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
+import { Repository } from 'typeorm';
+import { Elements } from 'backend/src/entity/elements.entity';
 import { Pool } from 'pg'
 import { ConfigService } from '@nestjs/config';
 
@@ -6,6 +8,8 @@ import { ConfigService } from '@nestjs/config';
 export class PgService {
 
   constructor(
+    @Inject('ELEMENT_REPOSITORY')
+    private elementReposity:Repository<Elements>,
     private readonly config:ConfigService
   ){}
 
@@ -35,5 +39,10 @@ export class PgService {
     } finally {
       client.release();
     }
+  }
+
+  public async getElements2():Promise<Elements[]>{
+    const result = await this.elementReposity.find();
+    return result;
   }
 }

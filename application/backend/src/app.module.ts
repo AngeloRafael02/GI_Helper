@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { PgService } from './services/pg/pg.service';
 import { MngdbService } from './services/mngdb/mngdb.service';
+import { DatabaseModule } from './module/database.module';
+import { elementProviders } from './providers/elements.providers';
 
 @Module({
   imports: [
@@ -12,9 +14,11 @@ import { MngdbService } from './services/mngdb/mngdb.service';
       envFilePath: ['.env.development', '.env'], // Specify the files to load environment variables from
     
     }),
+    DatabaseModule
   ],
   controllers: [AppController],
   providers: [
+    ...elementProviders,
     AppService,
     PgService,
     MngdbService
