@@ -108,3 +108,35 @@ VALUES
 ('Wriothesley',         5, 6, 4, 5, 9,15,30, 4,27,23,38, 3, '/wriothesley')
 --(''                      ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , ''),
 ;
+
+CREATE VIEW allCharacters AS 
+SELECT 
+    Characters.id,
+    Characters.name,
+    Characters.star,
+    el.element,
+    wt.type,
+    re.region,
+    sd.DomainName,
+    STRING_TO_ARRAY(CONCAT(ss.Mat3, ',', ss.Mat4, ',', ss.Mat5), ',') as SkillMats,
+    STRING_TO_ARRAY(CONCAT(em.Mat1, ',', em.Mat2, ',', em.Mat3), ',') as EnhanceMats,
+    STRING_TO_ARRAY(CONCAT(cm.Gem2, ',', cm.Gem3, ',', cm.Gem4, ',', cm.Gem5), ',') as GemMats,
+    bm.Material AS BossMats,
+    tdm.MateriaL AS TrounceMats,
+    ls.MateriaL AS LocalSpecialty,
+    Availability.days,
+    Characters.ImgURL
+FROM Characters
+LEFT JOIN elements AS el ON Characters.element_id = el.id
+LEFT JOIN WeaponTypes AS wt ON Characters.WeaponType_ID = wt.id
+LEFT JOIN regions AS re ON Characters.Region_ID = re.id
+LEFT JOIN AscensionDomains AS sd ON Characters.SkillDomain_ID = sd.id
+LEFT JOIN allSkillMatset AS ss ON Characters.SkillDomainMaterials_ID = ss.id
+LEFT JOIN allMobLootSets AS em ON Characters.EnhancementMatID = em.id
+LEFT JOIN allGemsSets AS cm ON Characters.CharacterAscensionMatID = cm.id
+LEFT JOIN CharacterLevelUpMaterial AS bm ON Characters.BossMaterial = bm.id
+LEFT JOIN spectrouncedomainmat as tdm ON Characters.TrounceDomainMaterial = tdm.id
+LEFT JOIN LocalSpecialties as ls on Characters.LocalSpecialty_ID = ls.id
+LEFT JOIN Availability on Characters.availabilties = Availability.id
+ORDER by Characters.id
+;
