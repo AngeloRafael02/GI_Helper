@@ -9,12 +9,14 @@ export class PgService {
 
   constructor(
     @Inject('ELEMENT_REPOSITORY')
-    private elementReposity:Repository<Elements>,
+    private readonly elementReposity:Repository<Elements>,
     private readonly config:ConfigService
   ){}
 
   private readonly pool = new Pool({
     connectionString: this.config.get<string>('DATABASE_URL'),
+    idleTimeoutMillis: 0,
+    connectionTimeoutMillis: 0,
     ssl: {
       require: true,
     },
@@ -41,7 +43,7 @@ export class PgService {
     }
   }
 
-  public async getElements2():Promise<Elements[]>{
+  public async getElements2():Promise<Elements[] | undefined>{
     const result = await this.elementReposity.find();
     return result;
   }

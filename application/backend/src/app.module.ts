@@ -1,11 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
+import { ElementsController } from './controllers/elements/elements.controller';
+
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { PgService } from './services/pg/pg.service';
 import { MngdbService } from './services/mngdb/mngdb.service';
 import { DatabaseModule } from './module/database.module';
-import { elementProviders } from './providers/elements.providers';
+import { elementProviders,characterProviders } from './providers/elements.providers';
+
 
 @Module({
   imports: [
@@ -16,9 +19,13 @@ import { elementProviders } from './providers/elements.providers';
     }),
     DatabaseModule
   ],
-  controllers: [AppController],
+  controllers: [
+    AppController,
+    ElementsController
+  ],
   providers: [
     ...elementProviders,
+    ...characterProviders,
     AppService,
     PgService,
     MngdbService
