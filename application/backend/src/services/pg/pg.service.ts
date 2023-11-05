@@ -3,6 +3,7 @@ import { Repository } from 'typeorm';
 import { Elements } from 'backend/src/entity/elements.entity';
 import { Pool } from 'pg'
 import { ConfigService } from '@nestjs/config';
+import { Characters } from 'backend/src/entity/character.entity';
 
 @Injectable()
 export class PgService {
@@ -10,6 +11,8 @@ export class PgService {
   constructor(
     @Inject('ELEMENT_REPOSITORY')
     private readonly elementReposity:Repository<Elements>,
+    @Inject('CHARACTER_REPOSITORY')
+    private readonly characterRepository:Repository<Characters>,
     private readonly config:ConfigService
   ){}
 
@@ -33,11 +36,12 @@ export class PgService {
     }
   }
 
-  public async getElements() {
+  public async GetTestData() {
     const client = await this.connection
     try {
-      const response = await client.query('SELECT * FROM elements;');
+      const response = await client.query(`SELECT * FROM allcharacters;`);
       console.log(response.rows);
+      return response.rows;
     } finally {
       client.release();
     }
@@ -47,4 +51,9 @@ export class PgService {
     const result = await this.elementReposity.find();
     return result;
   }
+
+  public async getAllCharacters():Promise<Characters[]> | undefined {
+    const result = await this.characterRepository.find();
+    return result;
+  }  
 }

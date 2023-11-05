@@ -14,7 +14,7 @@ export class AppController {
   @Get()
   async getHello(){
     const mgbTest = await this.mngdbService.getMongoDBVersion();
-    const pgTest = await this.pgService.getElements2();
+    const pgTest = await this.pgService.GetTestData();
     return {mgbTest,pgTest}
   }
 }

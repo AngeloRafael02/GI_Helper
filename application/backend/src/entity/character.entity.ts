@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('allcharacters')
 export class Characters{
     @PrimaryGeneratedColumn()      
     id:number;
@@ -21,28 +21,28 @@ export class Characters{
     region:string;
 
     @Column()
-    DomainName:string;
+    domainname:string;
 
     @Column("text", { array: true })
-    SkillMats: string[];
+    skillmats: string[];
 
     @Column("text", { array: true })
-    EnhanceMats: string[];
+    enhancemats: string[];
 
     @Column("text", { array: true })
-    GemMats: string[];
+    gemmats: string[];
 
     @Column()
-    BossMats:string;
+    bossmats:string;
 
     @Column()
-    TrounceMats:string;
+    trouncemats:string;
 
     @Column()
-    LocalSpecialty:string;
+    localspecialty:string;
 
     @Column("text", { array: true })
     days: string[];
     
     @Column()
-    ImgURL:string;}
+    imgurl:string;}
