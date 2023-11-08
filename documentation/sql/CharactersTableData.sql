@@ -141,93 +141,14 @@ LEFT JOIN Availability on Characters.availabilties = Availability.id
 ORDER by Characters.id
 ;
 
-CREATE VIEW Day1Characters AS 
-SELECT 
-    Characters.id,
-    Characters.name,
-    Characters.star,
-    el.element,
-    wt.type,
-    re.region,
-    sd.DomainName,
-    bm.Material AS BossMats,
-    tdm.MateriaL AS TrounceMats,
-    ls.MateriaL AS LocalSpecialty,
-    Availability.days,
-    Characters.ImgURL
-FROM Characters
-LEFT JOIN elements AS el ON Characters.element_id = el.id
-LEFT JOIN WeaponTypes AS wt ON Characters.WeaponType_ID = wt.id
-LEFT JOIN regions AS re ON Characters.Region_ID = re.id
-LEFT JOIN AscensionDomains AS sd ON Characters.SkillDomain_ID = sd.id
-LEFT JOIN allSkillMatset AS ss ON Characters.SkillDomainMaterials_ID = ss.id
-LEFT JOIN allMobLootSets AS em ON Characters.EnhancementMatID = em.id
-LEFT JOIN allGemsSets AS cm ON Characters.CharacterAscensionMatID = cm.id
-LEFT JOIN CharacterLevelUpMaterial AS bm ON Characters.BossMaterial = bm.id
-LEFT JOIN spectrouncedomainmat as tdm ON Characters.TrounceDomainMaterial = tdm.id
-LEFT JOIN LocalSpecialties as ls on Characters.LocalSpecialty_ID = ls.id
-LEFT JOIN Availability on Characters.availabilties = Availability.id
-WHERE availabilties = 1
-ORDER by Characters.id
-;
 
-CREATE VIEW Day2Characters AS 
-SELECT 
-    Characters.id,
-    Characters.name,
-    Characters.star,
-    el.element,
-    wt.type,
-    re.region,
-    sd.DomainName,
-    bm.Material AS BossMats,
-    tdm.MateriaL AS TrounceMats,
-    ls.MateriaL AS LocalSpecialty,
-    Availability.days,
-    Characters.ImgURL
-FROM Characters
-LEFT JOIN elements AS el ON Characters.element_id = el.id
-LEFT JOIN WeaponTypes AS wt ON Characters.WeaponType_ID = wt.id
-LEFT JOIN regions AS re ON Characters.Region_ID = re.id
-LEFT JOIN AscensionDomains AS sd ON Characters.SkillDomain_ID = sd.id
-LEFT JOIN allSkillMatset AS ss ON Characters.SkillDomainMaterials_ID = ss.id
-LEFT JOIN allMobLootSets AS em ON Characters.EnhancementMatID = em.id
-LEFT JOIN allGemsSets AS cm ON Characters.CharacterAscensionMatID = cm.id
-LEFT JOIN CharacterLevelUpMaterial AS bm ON Characters.BossMaterial = bm.id
-LEFT JOIN spectrouncedomainmat as tdm ON Characters.TrounceDomainMaterial = tdm.id
-LEFT JOIN LocalSpecialties as ls on Characters.LocalSpecialty_ID = ls.id
-LEFT JOIN Availability on Characters.availabilties = Availability.id
-WHERE availabilties = 2
-ORDER by Characters.id
-;
-
-
-CREATE VIEW Day3Characters AS 
-SELECT 
-    Characters.id,
-    Characters.name,
-    Characters.star,
-    el.element,
-    wt.type,
-    re.region,
-    sd.DomainName,
-    bm.Material AS BossMats,
-    tdm.MateriaL AS TrounceMats,
-    ls.MateriaL AS LocalSpecialty,
-    Availability.days,
-    Characters.ImgURL
-FROM Characters
-LEFT JOIN elements AS el ON Characters.element_id = el.id
-LEFT JOIN WeaponTypes AS wt ON Characters.WeaponType_ID = wt.id
-LEFT JOIN regions AS re ON Characters.Region_ID = re.id
-LEFT JOIN AscensionDomains AS sd ON Characters.SkillDomain_ID = sd.id
-LEFT JOIN allSkillMatset AS ss ON Characters.SkillDomainMaterials_ID = ss.id
-LEFT JOIN allMobLootSets AS em ON Characters.EnhancementMatID = em.id
-LEFT JOIN allGemsSets AS cm ON Characters.CharacterAscensionMatID = cm.id
-LEFT JOIN CharacterLevelUpMaterial AS bm ON Characters.BossMaterial = bm.id
-LEFT JOIN spectrouncedomainmat as tdm ON Characters.TrounceDomainMaterial = tdm.id
-LEFT JOIN LocalSpecialties as ls on Characters.LocalSpecialty_ID = ls.id
-LEFT JOIN Availability on Characters.availabilties = Availability.id
-WHERE availabilties = 3
-ORDER by Characters.id
+SELECT * FROM allCharacters
+-- *PICK CONDITION HERE And Uncomment One*
+-- WHERE 'Monday'  = ANY(days)
+-- WHERE 'Tuesday'  = ANY(days)
+-- WHERE 'Wednesday'  = ANY(days)
+-- WHERE 'Thursday'  = ANY(days)
+-- WHERE 'Friday'  = ANY(days)
+-- WHERE 'Saturday'  = ANY(days)
+-- WHERE 'Sunday'  = ANY(days)
 ;
