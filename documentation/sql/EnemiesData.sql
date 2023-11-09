@@ -132,7 +132,8 @@ INSERT INTO CharacterLevelUpMaterial (Material, Region_ID) VALUES
     ('Emperor''s Resolution',5), -- Emperor of Fire and Iron (25)
     ('Light Guiding Tetrahedron',4), -- Algorithm of Semi-Intransient Matrix of Overseer Network 
     ('Tourbillon Device',5), --Experimental Field Generator
-    ('Fontemer Unihorn',5) --Millennial Pearl Seahorse
+    ('Fontemer Unihorn',5), --Millennial Pearl Seahorse
+    ('Water That Failed To Transcend',5) -- Hydro Tulpa
 ;
 
 CREATE TABLE SpecTrounceDomainMat(
@@ -163,7 +164,10 @@ INSERT INTO SpecTrounceDomainMat(Material) VALUES
 ('Daka''s Bell'),  --21
 ('Worldspan Fern'),
 ('Primordial Greenbloom'),
-('Everamber') --24
+('Everamber'), --24
+('Lightless Silk String'),
+('Lightless Eye of the Maelstrom'),
+('Lightless Mass') --27
 ;
 
 

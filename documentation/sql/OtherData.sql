@@ -12,7 +12,7 @@ INSERT INTO LocalSpecialties (Material, Region_ID) VALUES
     ('Small Lamp Grass',1),
     ('Calla Lily',1),
     ('Jueyun Chili',2),
-    ('Dandelion   Seed',2),
+    ('Dandelion Seed',2),
     ('Noctilucous Jade',2), --10
     ('Silk Flower',2),
     ('Glaze Lily',2),
@@ -41,5 +41,7 @@ INSERT INTO LocalSpecialties (Material, Region_ID) VALUES
     ('Lumidouce Bell',5), --35
     ('Rainbow Rose',5),
     ('Lumitolle',5),
-    ('Subdetection Unit',5)
+    ('Subdetection Unit',5),
+    ('Beryl Conch', 5),
+    ('Lakelight Lily', 5) --40
 ;
