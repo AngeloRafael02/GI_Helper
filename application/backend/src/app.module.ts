@@ -8,6 +8,7 @@ import { PgService } from './services/pg/pg.service';
 import { MngdbService } from './services/mngdb/mngdb.service';
 import { DatabaseModule } from './module/database.module';
 import { elementProviders,characterProviders } from './providers/elements.providers';
+import { CharacterController } from './controllers/character/character.controller';
 
 
 @Module({
@@ -21,7 +22,8 @@ import { elementProviders,characterProviders } from './providers/elements.provid
   ],
   controllers: [
     AppController,
-    ElementsController
+    ElementsController,
+    CharacterController
   ],
   providers: [
     ...elementProviders,
