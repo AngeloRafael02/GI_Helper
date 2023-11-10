@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Repository,ArrayContains } from 'typeorm';
 import { Elements } from 'backend/src/entity/elements.entity';
 import { Pool } from 'pg'
 import { ConfigService } from '@nestjs/config';
@@ -56,4 +56,14 @@ export class PgService {
     const result = await this.characterRepository.find();
     return result;
   }  
+
+  public async getCharacter(index:number):Promise<Characters[]> | undefined {
+    const result = await this.characterRepository.find({where:{id:index}});
+    return result;
+  }
+
+  public async getDayCharacters(day:string):Promise<Characters[]> | undefined {
+    const result = await this.characterRepository.findBy({days:ArrayContains([day])});
+    return result;
+  }
 }
