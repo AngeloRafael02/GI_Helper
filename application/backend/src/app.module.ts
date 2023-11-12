@@ -9,6 +9,7 @@ import { MngdbService } from './services/mngdb/mngdb.service';
 import { DatabaseModule } from './module/database.module';
 import { elementProviders,characterProviders } from './providers/elements.providers';
 import { CharacterController } from './controllers/character/character.controller';
+import { DaysController } from './controllers/days/days.controller';
 
 
 @Module({
@@ -23,7 +24,8 @@ import { CharacterController } from './controllers/character/character.controlle
   controllers: [
     AppController,
     ElementsController,
-    CharacterController
+    CharacterController,
+    DaysController
   ],
   providers: [
     ...elementProviders,
