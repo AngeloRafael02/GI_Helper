@@ -9,7 +9,7 @@ export class CharacterController {
     ) {}
 
     @Get(':id')
-    async getHello(@Param('id') id:number){
+    public async getHello(@Param('id') id:number){
       const pgTest = await this.pgService.getCharacter(id)
       return {pgTest}
     }

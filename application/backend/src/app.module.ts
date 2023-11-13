@@ -10,6 +10,7 @@ import { DatabaseModule } from './module/database.module';
 import { elementProviders,characterProviders } from './providers/elements.providers';
 import { CharacterController } from './controllers/character/character.controller';
 import { DaysController } from './controllers/days/days.controller';
+import { WeaponsController } from './controllers/weapons/weapons.controller';
 
 
 @Module({
@@ -25,7 +26,8 @@ import { DaysController } from './controllers/days/days.controller';
     AppController,
     ElementsController,
     CharacterController,
-    DaysController
+    DaysController,
+    WeaponsController
   ],
   providers: [
     ...elementProviders,
