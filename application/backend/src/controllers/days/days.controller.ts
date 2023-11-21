@@ -4,13 +4,12 @@ import { PgService } from 'backend/src/services/pg/pg.service';
 @Controller('day')
 export class DaysController {
     constructor(
-        private readonly pgService:PgService
+        private pgService:PgService
     ){}
 
-    @Get(':id')
-    public async getAllDay(@Param('id') day:string ) {
+    @Get(':day')
+    public async getAllDay(@Param('day') day:string ) {
         const charResult = await this.pgService.getDayCharacters(day);
-        
         return {charResult}
     }
 

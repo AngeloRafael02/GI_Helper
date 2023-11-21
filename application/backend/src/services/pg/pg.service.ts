@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { Repository,ArrayContains } from 'typeorm';
+import { Repository} from 'typeorm';
 import { Elements } from 'backend/src/entity/elements.entity';
 import { Pool } from 'pg'
 import { ConfigService } from '@nestjs/config';
@@ -63,7 +63,13 @@ export class PgService {
   }
 
   public async getDayCharacters(day:string):Promise<Characters[]> | undefined {
-    const result = await this.characterRepository.findBy({days:ArrayContains([day])});
+    let query = day
+    const result = await this.characterRepository
+      .createQueryBuilder('character')
+      .where(`:id = ANY(character.days)`,{id:query.charAt(0).toUpperCase()+query.slice(1)})
+      .getMany();
     return result;
   }
 }
+
+//PLease Clean this code: only have one way/code to connect app to DB 
