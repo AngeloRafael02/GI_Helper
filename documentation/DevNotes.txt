@@ -28,9 +28,11 @@ environmental variable of the frontend and backend are in separate files:
 - backend uses .env located at the application/ directory level
 
 ROUTES:
-/,/:day - GET (get current day characters & List all Items)
+/ - GET (get current day characters and Weapons then List all Item Lists)
 / - POST (Push a new List Item)
 / - PUT (Update a list Item)
 / - DELETE (delete a list item)
+
+/day/:day - GET(get a ll characters and weapons available on that day)
 /characters/:id - GET (get a single character + the details)
 /weapons/:id - GET (get a single character + the details)
