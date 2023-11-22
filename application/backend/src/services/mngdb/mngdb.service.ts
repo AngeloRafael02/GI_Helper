@@ -9,7 +9,7 @@ export class MngdbService {
         private readonly config:ConfigService
     ){}
 
-    private client = new MongoClient(this.config.getOrThrow('MONGODB_URL'), {
+    private client = new MongoClient(this.config.getOrThrow<string>('MONGODB_URL'), {
         serverApi: {
           version: ServerApiVersion.v1,
           strict: true,
