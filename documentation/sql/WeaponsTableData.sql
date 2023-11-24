@@ -1,7 +1,7 @@
 --Credits to (https://genshin.honeyhunterworld.com/) for the Data
 CREATE TABLE Weapons (
     id BIGSERIAL PRIMARY KEY,
-    Name VARCHAR(50),
+    Name VARCHAR(60),
     Star INTEGER,
     WeaponType_ID INT REFERENCES WeaponTypes(id),
     SecondStats_ID INT REFERENCES SecondStats(id),
@@ -171,8 +171,8 @@ VALUES
 ('Mistsplitter Reforged',                5, 1, 7, 6, 7,20,16, 1, 'MistsplitterReforged.png'),
 ('Haran Geppaku Futsu',                  5, 1, 8, 6, 8,20, 9, 2, 'HaranGeppakuFutsu.png'),
 ('Key of Khaj-Nisut',                    5, 1, 2, 8,10,21,18, 1, 'KeyOfKhaj-Nisut.png'),
-('Light of Foliar Incision'              5, 1, 8, 8,10,21,26, 1, 'LightOfFoliarIncision.png'),
-('Splendor of Tranquil Waters'           5, 1, 7,10,14,27,31, 2, 'SplendorOfTranquilWaters.png'),
+('Light of Foliar Incision',             5, 1, 8, 8,10,21,26, 1, 'LightOfFoliarIncision.png'),
+('Splendor of Tranquil Waters',          5, 1, 7,10,14,27,31, 2, 'SplendorOfTranquilWaters.png'),
 --5 Stars Claymore   
 ('Skyward Pride',                        5, 2, 5, 2, 2, 1, 8, 2, 'SkywardPride.png'),
 ('Wolf''s Gravestone',                   5, 2, 1, 2, 3,15, 6, 3, 'WolfsGravestone.png'),
@@ -196,7 +196,7 @@ VALUES
 ('Kagura''s Verity',                     5, 4, 7, 6, 9, 2,10, 3, 'KagurasVerity.png'),
 ('A Thousand Floating Dreams',           5, 4, 5, 8,11,18,24, 2, 'AThousandFloatingDreams.png'),
 ('Tulaytullah''s Remembrance',           5, 4, 7, 8,12,24,25, 3, 'TulaytullahsRemembrance.png'),
-('Jadefall''s Splendor',                 5, 4, 2, 4, 4, 7,24, 1, 'JadefallsSplendor.png'),
+('Jadefall''s Splendor',                 5, 4, 2 , 4, 4, 7,24, 1, 'JadefallsSplendor.png'),
 ('Tome of the Eternal Flow',             5, 4, 7,10,14,28,30, 2, 'TomeOfTheEternalFlow.png'),
 ('Cashflow Supervision',                 5, 4, 8,10,15,31,29, 3, 'CashflowSupervision.png'),
 --5 Stars Bow   
@@ -205,11 +205,35 @@ VALUES
 ('Elegy For The End',                    5, 5, 5, 2, 2,11, 5, 2, 'ElegyForTheEnd.png'),
 ('Thundering Pulse',                     5, 5, 7, 6, 8, 4,14, 2, 'ThunderingPulse.png'),
 ('Polar Star',                           5, 5, 8, 6, 9, 2,10, 3, 'PolarStar.png'),
-('Aqua Simulacra ',                      5, 5, 7, 4, 4, 9, 2, 1, 'AquaSimulacra.png')
+('Aqua Simulacra ',                      5, 5, 7, 4, 4, 9, 2, 1, 'AquaSimulacra.png'),
 ('Hunter''s Path',                       5, 5, 8, 8,12,21,25, 3, 'HuntersPath.png'),
 ('The First Great Magic',                5, 5, 7,10,13,27,31, 1, 'TheFirstGreatMagic.png')
 ;   
--- DEVNOTE: Add these Correction to new Table (Find the Weapons themselves)
+-- DEVNOTE: Add these Correction to new Table (Find the Weapons themselves Unfortunately)
 --UPDATE weapons SET domain_id = 2 WHERE id = 115 ;   
 --UPDATE weapons SET domain_id = 4 WHERE id = 13 ;  
 --UPDATE weapons SET domain_id = 4 WHERE id = 61 ;  
+
+SELECT * FROM allWeapons;
+CREATE VIEW allWeapons AS 
+SELECT 
+    weapons.id,
+    weapons.name,
+    weapons.star,
+    wt.type,
+    ss.stat,
+    sd.DomainName,
+    STRING_TO_ARRAY(CONCAT(wm.Material2, ',', wm.Material3, ',', wm.Material4, ',', wm.Material5), ',') as WeaponMats,
+    STRING_TO_ARRAY(CONCAT(em.Mat1, ',', em.Mat2, ',', em.Mat3), ',') as EnhanceMats1,
+    STRING_TO_ARRAY(CONCAT(em2.Mat1, ',', em2.Mat2, ',', em2.Mat3), ',') as EnhanceMats2,
+    Availability.days,
+    Weapons.ImgURL
+FROM weapons
+LEFT JOIN WeaponTypes AS wt ON Weapons.WeaponType_ID = wt.id
+LEFT JOIN SecondStats as ss ON Weapons.SecondStats_ID = ss.id
+LEFT JOIN AscensionDomains as sd ON Weapons.WeaponDomain_ID = sd.id
+LEFT JOIN WMaterialSet as wm ON Weapons.WeaponDomainMaterials_ID = wm.id
+LEFT JOIN allMobLootSets as em on Weapons.EnhancementMat1ID = em.id
+LEFT JOIN allMobLootSets as em2 on Weapons.EnhancementMat2ID = em2.id
+LEFT JOIN Availability on Weapons.Availabilties = Availability.id 
+;
