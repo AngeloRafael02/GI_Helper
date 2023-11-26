@@ -6,7 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { PgService } from './services/pg/pg.service';
 import { MngdbService } from './services/mngdb/mngdb.service';
 import { DatabaseModule } from './module/database.module';
-import { characterProviders } from './providers/elements.providers';
+import { characterProviders,weaponsProviders } from './providers/elements.providers';
 import { CharacterController } from './controllers/character/character.controller';
 import { DaysController } from './controllers/days/days.controller';
 import { WeaponsController } from './controllers/weapons/weapons.controller';
@@ -29,6 +29,7 @@ import { WeaponsController } from './controllers/weapons/weapons.controller';
   ],
   providers: [
     ...characterProviders,
+    ...weaponsProviders,
     AppService,
     PgService,
     MngdbService

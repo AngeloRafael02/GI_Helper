@@ -11,9 +11,10 @@ export class DaysController {
 
     @Get(':day')
     public async getAllDay(@Param('day') day:string ) {
-        const charResult = await this.pgService.getDayCharacters(day);
+        const currentCharacters = await this.pgService.getDayCharacters(day);
+        const currentWeapons = await this.pgService.getDayWeapons(day);
         const mgbTest = await this.mngdbService.getMongoDBVersion();
-        return {charResult,mgbTest}
+        return {mgbTest,currentCharacters,currentWeapons}
     }
 
 }
