@@ -3,6 +3,7 @@ import { Repository} from 'typeorm';
 import { Pool } from 'pg'
 import { ConfigService } from '@nestjs/config';
 import { Characters } from 'backend/src/entity/character.entity';
+import { Weapons } from 'backend/src/entity/weapon.entity';
 
 @Injectable()
 export class PgService {
@@ -10,6 +11,8 @@ export class PgService {
   constructor(
     @Inject('CHARACTER_REPOSITORY')
     private readonly characterRepository:Repository<Characters>,
+    @Inject('WEAPON_REPOSITORY')
+    private readonly weaponRepository:Repository<Weapons>,
     private readonly config:ConfigService
   ){}
 
@@ -32,21 +35,39 @@ export class PgService {
     }
   }
 
+
   public async getAllCharacters():Promise<Characters[]> | undefined {
     const result = await this.characterRepository.find();
     return result;
   }  
-
   public async getCharacter(index:number):Promise<Characters[]> | undefined {
     const result = await this.characterRepository.find({where:{id:index}});
     return result;
   }
-
   public async getDayCharacters(day:string):Promise<Characters[]> | undefined {
-    let query = day
     const result = await this.characterRepository
       .createQueryBuilder('character')
-      .where(`:id = ANY(character.days)`,{id:query.charAt(0).toUpperCase()+query.slice(1)})
+      .where(`:id = ANY(character.days)`,{id:day.charAt(0).toUpperCase()+day.slice(1)})
+      .getMany();
+    return result;
+  }
+
+  //WEAPON FUNCTIONS
+  /**
+   * gets all Weapons and their information
+   */
+  public async getAllWeapons():Promise<Weapons[]>  {
+    const result = await this.weaponRepository.find(); 
+    return result;
+  }
+  public async getWeapon(index:number):Promise<Weapons[]> | undefined {
+    const result = await this.weaponRepository.find({where:{id:index}});
+    return result;
+  }
+  public async getDayWeapons(day:string):Promise<Weapons[]> | undefined {
+    const result = await this.weaponRepository
+      .createQueryBuilder('weapon')
+      .where(`:id = ANY(weapon.days)`,{id:day.charAt(0).toUpperCase()+day.slice(1)})
       .getMany();
     return result;
   }
