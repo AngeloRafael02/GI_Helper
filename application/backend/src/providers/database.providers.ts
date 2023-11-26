@@ -1,5 +1,6 @@
 import { DataSource } from 'typeorm';
 import { Characters } from '../entity/character.entity';
+import { Weapons } from '../entity/weapon.entity';
 require('dotenv').config();
 
 export const databaseProviders = [
@@ -13,7 +14,7 @@ export const databaseProviders = [
         username: process.env['PG_USERNAME'],
         password: process.env['PG_PASSWORD'],
         database: process.env['PG_DB'],
-        entities: [Characters],
+        entities: [Characters,Weapons],
         synchronize: false,
         ssl:true,
         connectTimeoutMS:0,
