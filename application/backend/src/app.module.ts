@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 
-import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { PgService } from './services/pg/pg.service';
 import { MngdbService } from './services/mngdb/mngdb.service';
@@ -30,7 +29,6 @@ import { WeaponsController } from './controllers/weapons/weapons.controller';
   providers: [
     ...characterProviders,
     ...weaponsProviders,
-    AppService,
     PgService,
     MngdbService
   ],

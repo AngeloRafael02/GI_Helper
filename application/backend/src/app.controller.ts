@@ -17,6 +17,5 @@ export class AppController {
   @Get()
   @Redirect(getToday(),301)
   async getHello(){
-    console.log("What?")
   }
 }
