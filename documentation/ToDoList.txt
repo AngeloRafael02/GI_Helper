@@ -2,7 +2,7 @@ TO DO List
 
 > Move Angular src/ to frontend/ --DONE
 > Move NestJs src/ to backend/ --DONE
-> Move config file to same location and moke both work --DONE
+> Move config file to same location and make both work --DONE
 > Install Necessary packages:
     frontend
      - bootstrap - DONE
@@ -12,5 +12,11 @@ TO DO List
      - postgres/pg - DONE
      - mongodb - DONE
 > Added Postgres DB Content - DONE
-> Create Rest API and routes
+> Create Rest API and routes on postgres - DONE 
 > Create MongoDB Schema 
+    Schema:{
+        id:ObjectId,
+        task:string,
+        whenCreated:Timestamp,
+        author:string | null
+    } 
