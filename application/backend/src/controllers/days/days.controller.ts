@@ -13,7 +13,7 @@ export class DaysController {
     public async getAllDay(@Param('day') day:string ) {
         const currentCharacters = await this.pgService.getDayCharacters(day);
         const currentWeapons = await this.pgService.getDayWeapons(day);
-        const mgbTest = await this.mngdbService.getATask();
+        const mgbTest = await this.mngdbService.getTasks();
         return {mgbTest,currentCharacters,currentWeapons}
     }
 
