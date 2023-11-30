@@ -1,12 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { MongoClient,ServerApiVersion} from 'mongodb';
 import { ConfigService } from '@nestjs/config';
-
-interface Task {
-    id:string,
-    task:string,
-    dateCreated:Date
-}
+import { Task } from 'backend/src/entity/task.interface';
 
 @Injectable()
 export class MngdbService {
@@ -36,33 +31,33 @@ export class MngdbService {
     }
 
     
-
     public async getTasks() {
         try{
             await this.connect();
             const db = this.client.db( this.config.getOrThrow<string>('MONGO_DB') );
             const collection = db.collection( this.config.getOrThrow<string>('MONGO_COL') );
-            const result = collection.find();
-            console.log(result);
-            return result;
-        }finally{
-            await this.close();
+            collection.find().toArray().then(function (results) {
+                console.log(results);
+                return results;
+            });
+        }catch(err){
+            console.log(err);
         }
     }
 
-    public async postTasks(id:string,task:string,dateCreated:Date){
+    public async postTask(task:string){
         try {
             await this.connect();
             const db = this.client.db( this.config.getOrThrow<string>('MONGO_DB') );
             const collection = db.collection<Task>( this.config.getOrThrow<string>('MONGO_COL') );
-            const result = await collection.insertOne({
-                id:id,
+        await collection.insertOne({
                 task:task,
-                dateCreated:dateCreated
+                dateCreated: new Date()
+            }).then(function (res) {
+                console.log(`A document was inserted: ${res.acknowledged}`);
             })
-            console.log(`A document was inserted with the _id: ${result.insertedId}`);
-        } finally {
-            await this.close();
+        }catch(err){
+            console.log(err);
         }
     }
 }
