@@ -1,4 +1,4 @@
-import { Controller,Get,Post,Param,Body } from '@nestjs/common';
+import { Controller,Get,Post,Param,Body, Put } from '@nestjs/common';
 import { PgService } from 'backend/src/services/pg/pg.service';
 import { MngdbService } from 'backend/src/services/mngdb/mngdb.service';
 import { Task } from 'backend/src/entity/task.interface';
@@ -22,6 +22,15 @@ export class DaysController {
     public async postATask(@Body() body:Task){
         const taskResult = await this.mngdbService.postTask(body.task);
         return {taskResult}
+    }
+
+    @Put(':day')
+    /**
+     * putATask
+     */
+    public async putATask(@Body() body:Task) {
+        const putResult = await this.mngdbService.putTask(body.index,body.task);
+        return {putResult}
     }
 
 }

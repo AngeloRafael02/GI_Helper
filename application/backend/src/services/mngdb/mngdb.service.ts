@@ -60,4 +60,18 @@ export class MngdbService {
             console.log(err);
         }
     }
+
+    public async putTask(index:number, newTask:string){
+        try {
+            await this.connect();
+            const db = this.client.db( this.config.getOrThrow<string>('MONGO_DB') );
+            const collection = db.collection<Task>( this.config.getOrThrow<string>('MONGO_COL') );
+            
+            const result = await collection.updateOne({index:index }, {$set:{task:newTask}})
+            return { result }
+        } catch (err) {
+            console.log(err);
+            return err;
+        }
+    }
 }
