@@ -61,13 +61,40 @@ export class MngdbService {
         }
     }
 
-    public async putTask(index:number, newTask:string){
+    public async putTask(updateData:{task:string, newTask:string}){
+        try {
+            await this.connect();
+
+            const db = this.client.db(this.config.getOrThrow<string>('MONGO_DB'));
+            const collection = db.collection<Task>(this.config.getOrThrow<string>('MONGO_COL'));
+
+            const result = await collection.updateOne({ task:updateData.task}, { $set: { task:updateData.newTask }});
+
+            if (result.modifiedCount === 1) {
+                console.log('Document updated successfully');
+            } else {
+                console.log('Document not found or not updated');
+            }
+            return { result }
+        } catch (err) {
+            console.log(err);
+            return err;
+        }
+    }
+
+    public async deleteTask(task:string) {
         try {
             await this.connect();
             const db = this.client.db( this.config.getOrThrow<string>('MONGO_DB') );
             const collection = db.collection<Task>( this.config.getOrThrow<string>('MONGO_COL') );
             
-            const result = await collection.updateOne({index:index }, {$set:{task:newTask}})
+            const result = await collection.deleteOne({task:task })
+
+            if (result.deletedCount === 1) {
+                console.log('Document deleted successfully');
+            } else {
+                console.log('Document not found or not deleted');
+            }
             return { result }
         } catch (err) {
             console.log(err);
