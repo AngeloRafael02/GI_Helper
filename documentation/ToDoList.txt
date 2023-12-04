@@ -11,6 +11,8 @@ TO DO List
      - cors - DONE
      - postgres/pg - DONE
      - mongodb - DONE
+
+BACKEND (Considered DONE)
 > Added Postgres DB Content - DONE
 > Create Rest API and routes on postgres - DONE 
 > Create MongoDB Schema 
@@ -18,5 +20,11 @@ TO DO List
         id:ObjectId,
         task:string,
         whenCreated:Timestamp,
-        author:string | null
+        author:string | null #Field not yet implemented
     } 
+> Create MongoDB ToDoList CRUD Feature - DONE
+
+FRONTEND 
+> Create Timer Component for next Server Reset
+> Create Button Panel for all Days of the Week
+    > Subscribe Backend data to days 
