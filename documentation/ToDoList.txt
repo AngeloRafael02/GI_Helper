@@ -25,6 +25,7 @@ BACKEND (Considered DONE)
 > Create MongoDB ToDoList CRUD Feature - DONE
 
 FRONTEND 
-> Create Timer Component for next Server Reset
+> Create Timer Component for next Server Reset - DONE (resets at 4pm)
+> Create Clock Component - DONE
 > Create Button Panel for all Days of the Week
     > Subscribe Backend data to days 
