@@ -10,12 +10,23 @@ export class DaysController {
         private mngdbService:MngdbService
     ){}
 
-    @Get(':day')
-    public async getAllDay(@Param('day') day:string ) {
+   
+    @Get(':day/characters')
+    public async getAllCharacters(@Param('day') day:string){
         const currentCharacters = await this.pgService.getDayCharacters(day);
+        return {currentCharacters}
+    }
+
+    @Get(':day/weapons')
+    public async getAllWeapons(@Param('day') day:string){
         const currentWeapons = await this.pgService.getDayWeapons(day);
-        const mgbTest = await this.mngdbService.getTasks();
-        return {mgbTest,currentCharacters,currentWeapons}
+        return {currentWeapons}
+    }
+   
+    @Get(':day')
+    public async getAllTasks(@Param('day') day:string ) {
+    const mgbTest = await this.mngdbService.getTasks();
+        return {mgbTest}
     }
 
     @Post(':day')
