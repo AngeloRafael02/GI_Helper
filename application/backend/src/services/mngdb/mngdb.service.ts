@@ -36,12 +36,14 @@ export class MngdbService {
             await this.connect();
             const db = this.client.db( this.config.getOrThrow<string>('MONGO_DB') );
             const collection = db.collection( this.config.getOrThrow<string>('MONGO_COL') );
-            collection.find().toArray().then(function (results) {
-                console.log(results);
-                return results;
-            });
+            const cursor =  collection.find().toArray()
+            if ((await collection.countDocuments()) === 0) {
+                console.warn("No documents found!");    
+              }
+            return cursor;
         }catch(err){
             console.log(err);
+            return err;
         }
     }
 
@@ -50,7 +52,7 @@ export class MngdbService {
             await this.connect();
             const db = this.client.db( this.config.getOrThrow<string>('MONGO_DB') );
             const collection = db.collection<Task>( this.config.getOrThrow<string>('MONGO_COL') );
-        await collection.insertOne({
+            await collection.insertOne({
                 task:task,
                 dateCreated: new Date()
             }).then(function (res) {
