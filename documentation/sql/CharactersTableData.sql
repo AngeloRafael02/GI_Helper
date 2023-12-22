@@ -107,8 +107,10 @@ VALUES
 ('Neuvillete',          5, 2, 4, 5, 9,13,31, 2,28,24,37, 1, '/neuvillete'),
 ('Wriothesley',         5, 6, 4, 5, 9,15,30, 6,27,23,38, 3, '/wriothesley'),
 ('Furina',              5, 2, 1, 5, 9,14,22, 2,29,27,40, 2, '/furina'),
-('Charlotte',           4, 6, 4, 5, 9,14,30, 6,27,26,39, 2, '/charlotte')
---(''                      ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , ''),
+('Charlotte',           4, 6, 4, 5, 9,14,30, 6,27,26,39, 2, '/charlotte'),
+('Navia',               5, 7, 2, 5, 9,13,31, 7,28,25,41, 1, '/navia'),
+('Chevreuse',           4, 1, 3, 5, 9,15,30, 1,24,26,35, 3, '/chevreuse')
+--('',                      ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , ''),
 ;
 
 CREATE VIEW allCharacters AS 
