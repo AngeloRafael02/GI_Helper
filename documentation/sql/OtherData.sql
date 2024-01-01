@@ -44,5 +44,6 @@ INSERT INTO LocalSpecialties (Material, Region_ID) VALUES
     ('Subdetection Unit',5),
     ('Beryl Conch', 5),
     ('Lakelight Lily', 5), --40
-    ('Spring of the First Dewdrop', 5)
+    ('Spring of the First Dewdrop', 5),
+    ('Clearwater Jade',2)
 ;
