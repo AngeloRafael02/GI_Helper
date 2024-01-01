@@ -133,7 +133,8 @@ INSERT INTO CharacterLevelUpMaterial (Material, Region_ID) VALUES
     ('Light Guiding Tetrahedron',4), -- Algorithm of Semi-Intransient Matrix of Overseer Network 
     ('Tourbillon Device',5), --Experimental Field Generator
     ('Fontemer Unihorn',5), --Millennial Pearl Seahorse
-    ('Water That Failed To Transcend',5) -- Hydro Tulpa
+    ('Water That Failed To Transcend',5), -- Hydro Tulpa
+    ('Cloudseam Scale',2) -- (30)
 ;
 
 CREATE TABLE SpecTrounceDomainMat(
