@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^21.0.3",
-    "@angular/cli": "^16.2.4",
+    "@angular/cli": "^21.1.0",
     "@angular/compiler-cli": "^16.2.0",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
